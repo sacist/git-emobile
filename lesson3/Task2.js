@@ -1,4 +1,15 @@
-const array = [2,3,4,1,2,3,4,5]
+const array = [1,2,3,5,7,9]
 
-// Код, который проверит, является ли массив отсортированным
-let isSortedArray = ...
+const sorted=[...array].sort((a,b)=>a-b)
+
+let isSortedArray = true
+
+for(let i =0;i<array.length;i++){
+    if(sorted[i]!==array[i]){
+        isSortedArray=false
+        break
+    }
+}
+
+console.log(isSortedArray);
+
