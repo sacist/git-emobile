@@ -5,7 +5,13 @@
   "scripts": {
     "test": "test"
   },
+  "type": "module",
   "author": "",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "config": "^4.1.0",
+    "express": "^5.1.0",
+    "pg-promise": "^11.15.0"
+  }
 }
