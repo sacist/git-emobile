@@ -1,11 +1,26 @@
 import { createUser } from "../services/create-user.js";
+import BaseController from "#Classes/base-controller.js";
 
-export const createUserController=async(req,res) => {
-    try {
-        const userData=req.body
-        await createUser(userData)
-        res.json({message:'ok'})
-    } catch (e) {
-        res.status(500).json({message:'Internal server error'})
+
+class CreateUserController extends BaseController {
+    get bodySchema() {
+        return {
+            type: 'object',
+            required: ['name', 'surname', 'password', 'email'],
+            additionalProperties: false,
+            properties: {
+                name: { type: 'string' },
+                surname: { type: 'string' },
+                email: { type: 'string', format: 'email' },
+                password: { type: 'string', pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$" }
+            }
+        }
+    }
+    async controller(req) {
+        const userData = req.body;
+        await createUser(userData);
+        return { message: 'ok' };
     }
 }
+
+export default new CreateUserController().run

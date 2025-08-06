@@ -2,14 +2,22 @@
   "name": "node",
   "version": "1.0.0",
   "main": "App.js",
-  "scripts": {
-    "test": "test"
-  },
   "type": "module",
+  "imports": {
+    "#Classes/*": "./classes/*",
+    "#Components/*": "./components/*",
+    "#Libs/*": "./libs/*",
+    "#Helpers/*": "./helpers/*"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": "",
   "license": "MIT",
   "description": "",
   "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
     "config": "^4.1.0",
     "express": "^5.1.0",
     "pg-promise": "^11.15.0"
