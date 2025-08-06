@@ -1,15 +1,27 @@
 import { getAllUsers } from "../services/get-all-users-paginated.js";
+import BaseController from "#Classes/base-controller.js";
 
-export const getAllUsersController = async (req, res) => {
-    try {
-        const { page } = req.query
-        if (typeof page!=='number'||page <= 0) {
-            res.status(400).json({ message: 'Client error' })
+
+class GetAllUsersController extends BaseController {
+    get querySchema() {
+        return {
+            type: 'object',
+            additionalProperties: false,
+            properties: {
+                page: { type: 'string', pattern: '^[1-9][0-9]*$' }, // только числа в строке
+            },
         }
-        const users = await getAllUsers(page, 10)
-        res.json(users)
-    } catch (e) {
-        res.status(500).json({ message: 'Internal server error' })
+    }
+    async controller(req) {
+        const query = { ...req.query };
+        if (!query.page) {
+            query.page = '1';
+        }
+        const page = parseInt(query.page);
+        const users = await getAllUsers(page, 10);
+
+        return users;
     }
 }
 
+export default new GetAllUsersController().run;

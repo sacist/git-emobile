@@ -1,9 +1,9 @@
 import express from 'express'
 import c from 'config'
 import router from './router.js'
-import { usersRouter } from './components/users/router.js'
-import { client } from './libs/db/databse.js'
-import { createTables } from './libs/db/create-tables.js'
+import { usersRouter } from '#Components/users/router.js'
+import { client } from '#Libs/db/databse.js'
+import { createTables } from '#Libs/db/create-tables.js'
 
 
 const App=express()
