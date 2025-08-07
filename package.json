@@ -2,15 +2,15 @@
   "name": "node",
   "version": "1.0.0",
   "main": "App.js",
-  "type": "module",
-  "imports": {
-    "#Classes/*": "./classes/*",
-    "#Components/*": "./components/*",
-    "#Libs/*": "./libs/*",
-    "#Helpers/*": "./helpers/*"
+  "_moduleAliases": {
+    "#Classes": "Classes",
+    "#Components": "Components",
+    "#Libs": "Libs",
+    "#Helpers": "Helpers"
   },
   "scripts": {
-    "start": "node app.js"
+    "postinstall": "npx link-module-alias",
+    "start": "node --require module-alias/register App.js"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +20,10 @@
     "ajv-formats": "^3.0.1",
     "config": "^4.1.0",
     "express": "^5.1.0",
+    "module-alias": "^2.2.3",
     "pg-promise": "^11.15.0"
+  },
+  "devDependencies": {
+    "link-module-alias": "^1.2.0"
   }
 }

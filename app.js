@@ -1,21 +1,19 @@
-import express from 'express'
-import c from 'config'
-import router from './router.js'
-import { usersRouter } from '#Components/users/router.js'
-import { client } from '#Libs/db/databse.js'
-import { createTables } from '#Libs/db/create-tables.js'
+const express = require('express');
+const c = require('config');
+const router = require('./router');
+const { usersRouter } = require('#Components/users/router');
+const { client } = require('#Libs/db/databse');
+const { createTables } = require('#Libs/db/create-tables');
 
+const App = express();
 
-const App=express()
+App.use(express.json());
 
-App.use(express.json())
+App.use(router);
+App.use(usersRouter);
 
-App.use(router)
-App.use(usersRouter)
+createTables(client);
 
-createTables(client)
-
-App.listen(c.get('SERVER.PORT'),()=>{
+App.listen(c.get('SERVER.PORT'), () => {
     console.log(`Сервер запущен на порту ${c.get('SERVER.PORT')}`);
-    
-})
+});
