@@ -1,10 +1,12 @@
-import express from 'express'
-import  createUserController  from './controllers/create-user.js'
-import  getAllUsersController  from './controllers/get-all-users-paginated.js'
-import { changeNameSurnameController } from './controllers/change-name-surname.js'
+const express = require('express');
+const createUserController = require('./controllers/create-user');
+const getAllUsersController = require('./controllers/get-all-users-paginated');
+const { changeNameSurnameController } = require('./controllers/change-name-surname');
 
-export const usersRouter=express.Router()
+const usersRouter = express.Router();
 
-usersRouter.post('/users',createUserController)
-usersRouter.get('/users',getAllUsersController)
-usersRouter.put('/users',changeNameSurnameController)
+usersRouter.post('/users', createUserController);
+usersRouter.get('/users', getAllUsersController);
+usersRouter.put('/users', changeNameSurnameController);
+
+module.exports = { usersRouter };

@@ -1,6 +1,5 @@
-import { createUser } from "../services/create-user.js";
-import BaseController from "#Classes/base-controller.js";
-
+const { createUser } = require('../services/create-user');
+const BaseController = require('#Classes/base-controller');
 
 class CreateUserController extends BaseController {
     get bodySchema() {
@@ -12,10 +11,14 @@ class CreateUserController extends BaseController {
                 name: { type: 'string' },
                 surname: { type: 'string' },
                 email: { type: 'string', format: 'email' },
-                password: { type: 'string', pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$" }
+                password: {
+                    type: 'string',
+                    pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+                }
             }
-        }
+        };
     }
+
     async controller(req) {
         const userData = req.body;
         await createUser(userData);
@@ -23,4 +26,4 @@ class CreateUserController extends BaseController {
     }
 }
 
-export default new CreateUserController().run
+module.exports = new CreateUserController().run;

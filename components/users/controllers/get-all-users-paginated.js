@@ -1,6 +1,5 @@
-import { getAllUsers } from "../services/get-all-users-paginated.js";
-import BaseController from "#Classes/base-controller.js";
-
+const { getAllUsers } = require('../services/get-all-users-paginated');
+const BaseController = require('#Classes/base-controller');
 
 class GetAllUsersController extends BaseController {
     get querySchema() {
@@ -10,8 +9,9 @@ class GetAllUsersController extends BaseController {
             properties: {
                 page: { type: 'string', pattern: '^[1-9][0-9]*$' }, // только числа в строке
             },
-        }
+        };
     }
+
     async controller(req) {
         const query = { ...req.query };
         if (!query.page) {
@@ -24,4 +24,4 @@ class GetAllUsersController extends BaseController {
     }
 }
 
-export default new GetAllUsersController().run;
+module.exports = new GetAllUsersController().run;

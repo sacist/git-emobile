@@ -1,16 +1,17 @@
-import pgPromise from 'pg-promise'
-import c from 'config'
+const pgPromise = require('pg-promise');
+const c = require('config');
 
+let pgpInstance;
+let clientInstance;
 
-const pgp = pgPromise()
-export const client = pgp(c.get('DATABASE'))
+if (!global.__pgp) {
+  pgpInstance = pgPromise();
+  clientInstance = pgpInstance(c.get('DATABASE'));
+  global.__pgp = pgpInstance;
+  global.__client = clientInstance;
+} else {
+  pgpInstance = global.__pgp;
+  clientInstance = global.__client;
+}
 
-client.connect()
-    .then((connect) => {
-        console.log('Connect to DB success')
-        connect.done()
-    })
-    .catch((error) => {
-        console.error('DataBase connection Error', error)
-    });
-
+module.exports = { client: clientInstance };

@@ -1,15 +1,15 @@
-import express from 'express'
+const express = require('express');
 
-const router=express.Router()
+const router = express.Router();
 
-router.use((_,__,next)=>{
+router.use((_, __, next) => {
     console.log('Time: ', Date.now());
-    next()
-})
+    next();
+});
 
-router.post('/',(req,res)=>{
-    const {msg}=req.query
-    res.json({message:msg})
-})
+router.post('/', (req, res) => {
+    const { msg } = req.query;
+    res.json({ message: msg });
+});
 
-export default router
+module.exports = router;
