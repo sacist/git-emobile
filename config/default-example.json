@@ -8,5 +8,6 @@
 		"user": "user",
 		"password": "password",
 		"database": "database"
-	}
+	},
+	"AUTH.PASSWORD_KEY":"key"
 }

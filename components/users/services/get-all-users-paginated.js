@@ -9,7 +9,6 @@ const getAllUsers = async (page, maxUsersOnPage) => {
         );
         return users;
     } catch (e) {
-        console.log(e);
         throw e;
     }
 };
