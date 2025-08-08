@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "main": "App.js",
   "_moduleAliases": {
-    "#Classes": "Classes",
-    "#Components": "Components",
-    "#Libs": "Libs",
-    "#Helpers": "Helpers"
+    "#Classes": "classes",
+    "#Components": "components",
+    "#Libs": "libs",
+    "#Helpers": "helpers",
+    "#Middleware": "middleware",
+    "#Errors":"errors"
   },
   "scripts": {
     "postinstall": "npx link-module-alias",
-    "start": "node --require module-alias/register App.js"
+    "start": "node --require module-alias/register app.js"
   },
   "author": "",
   "license": "MIT",
@@ -19,7 +21,10 @@
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "config": "^4.1.0",
+    "date-fns": "^4.1.0",
     "express": "^5.1.0",
+    "ioredis": "^5.7.0",
+    "jsonwebtoken": "^9.0.2",
     "module-alias": "^2.2.3",
     "pg-promise": "^11.15.0"
   },

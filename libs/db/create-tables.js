@@ -6,6 +6,12 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255),
     email VARCHAR(255) UNIQUE
 );
+CREATE TABLE IF NOT EXISTS refresh_tokens(
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    token VARCHAR(255),
+    expire TIMESTAMPTZ
+)
 `;
 
 const createTables = async (client) => {

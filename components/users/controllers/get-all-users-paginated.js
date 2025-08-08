@@ -7,12 +7,12 @@ class GetAllUsersController extends BaseController {
             type: 'object',
             additionalProperties: false,
             properties: {
-                page: { type: 'string', pattern: '^[1-9][0-9]*$' }, // только числа в строке
+                page: { type: 'string', pattern: '^[1-9][0-9]*$' }, 
             },
         };
     }
 
-    async controller(req) {
+    async controller(req,res,next) {
         const query = { ...req.query };
         if (!query.page) {
             query.page = '1';

@@ -1,5 +1,6 @@
 const { createUser } = require('../services/create-user');
 const BaseController = require('#Classes/base-controller');
+const {ConflictError}=require('#Errors')
 
 class CreateUserController extends BaseController {
     get bodySchema() {
@@ -19,10 +20,18 @@ class CreateUserController extends BaseController {
         };
     }
 
-    async controller(req) {
-        const userData = req.body;
-        await createUser(userData);
-        return { message: 'ok' };
+    async controller(req,res,next) {
+        try {  
+            const userData = req.body;
+            await createUser(userData);
+            return { message: 'ok' };
+        } catch (e) {
+            if(e.code==='email_exists'){
+                return next(new ConflictError({code:'email_conflict',text:'такой email уже зарегестрирован'}))
+            }else{
+                throw e
+            }
+        }
     }
 }
 
