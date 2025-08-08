@@ -12,7 +12,7 @@ class GetAllUsersController extends BaseController {
         };
     }
 
-    async controller(req) {
+    async controller(req,res,next) {
         const query = { ...req.query };
         if (!query.page) {
             query.page = '1';

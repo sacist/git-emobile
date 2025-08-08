@@ -1,6 +1,7 @@
 const Config = require('config');
 const JWT = require('jsonwebtoken');
 const GetSessionByTokenService = require('#Components/users/services/get-session-by-token.js');
+const {AuthorizationError}=require('#Errors')
 
 const AuthorizationMiddleware = async (req, res, next) => {
 	const now = Date.now();
@@ -23,7 +24,7 @@ const AuthorizationMiddleware = async (req, res, next) => {
 
 		req.state = { user: session }
 	} catch(error) {
-		return res.status(401).send(error.message);
+		return next(new AuthorizationError({code:'invalid_token',text:'Токен не валидный'}))
 	}
 
 	next();

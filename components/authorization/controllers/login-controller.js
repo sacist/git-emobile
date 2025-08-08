@@ -1,7 +1,7 @@
 const BaseController = require('#Classes/base-controller');
 const GetTokens = require('#Components/users/services/get-user-tokens.js');
 const getUsersByEmailAndPasswordService=require('#Components/users/services/get-user-by-email-password.js')
-
+const {NotFoundError}=require('#Errors')
 
 class LoginController extends BaseController {
 	get bodySchema() {
@@ -16,16 +16,13 @@ class LoginController extends BaseController {
 		}
 	}
 
-	async controller(req) {
+	async controller(req,res,next) {
 		const { email, password } = req.body;
 
 		const user = await getUsersByEmailAndPasswordService(email, password);
 
 		if(!user) {
-			return {
-				result:'Password or email is incorrect',
-				code:401
-			}
+			return next(new NotFoundError({ code: 'user_not_found', text: 'Пользователь не найден' }))
 		}
 
 		const session = {
@@ -37,9 +34,7 @@ class LoginController extends BaseController {
 
 		const tokens = await GetTokens(session);
 
-		return {
-			result:tokens
-		}
+		return tokens
 	}
 }
 
