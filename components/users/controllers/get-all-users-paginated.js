@@ -7,7 +7,7 @@ class GetAllUsersController extends BaseController {
             type: 'object',
             additionalProperties: false,
             properties: {
-                page: { type: 'string', pattern: '^[1-9][0-9]*$' }, // только числа в строке
+                page: { type: 'string', pattern: '^[1-9][0-9]*$' }, 
             },
         };
     }

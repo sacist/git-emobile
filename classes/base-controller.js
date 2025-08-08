@@ -56,8 +56,11 @@ class BaseController {
             return res.status(400).send(errorsList);
         }
         try {
-            const result = await this.controller(req);
-            res.status(200).send(result);
+            let {result,code} = await this.controller(req);
+            if(!code){
+                code=200
+            }
+            res.status(code).send(result);
         } catch (error) {
             console.error(error);
             res.status(500).json({ message: 'Internal server error' });

@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "main": "App.js",
   "_moduleAliases": {
-    "#Classes": "Classes",
-    "#Components": "Components",
-    "#Libs": "Libs",
-    "#Helpers": "Helpers"
+    "#Classes": "classes",
+    "#Components": "components",
+    "#Libs": "libs",
+    "#Helpers": "helpers",
+    "#Middleware": "middleware"
   },
   "scripts": {
     "postinstall": "npx link-module-alias",
-    "start": "node --require module-alias/register App.js"
+    "start": "node --require module-alias/register app.js"
   },
   "author": "",
   "license": "MIT",

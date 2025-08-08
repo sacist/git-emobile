@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS refresh_tokens(
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id) ON DELETE CASCADE,
-    token VARCHAR(255)
+    token VARCHAR(255),
+    expire TIMESTAMPTZ
 )
 `;
 

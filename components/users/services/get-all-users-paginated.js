@@ -1,4 +1,4 @@
-const { client } = require('../../../libs/db/databse');
+const { client } = require('#Libs/db/databse');
 
 const getAllUsers = async (page, maxUsersOnPage) => {
     try {
