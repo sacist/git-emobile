@@ -27,7 +27,7 @@ class CreateUserController extends BaseController {
             return { message: 'ok' };
         } catch (e) {
             if(e.code==='email_exists'){
-                return next(new ConflictError({code:'email_conflict',text:'такой email уже зарегестрирован'}))
+                throw new ConflictError({code:'email_conflict',text:'такой email уже зарегестрирован'})
             }else{
                 throw e
             }

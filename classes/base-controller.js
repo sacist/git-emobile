@@ -62,6 +62,8 @@ class BaseController {
         }
         try {
             let result = await this.controller(req,res,next);
+            console.log(result);
+            
             res.status(200).send(result);
         } catch (error) {
             return next(error)

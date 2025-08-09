@@ -30,6 +30,7 @@ class LoginController extends BaseController {
 			name: user.name,
 			surname: user.surname,
 			email: user.email,
+			role:user.role
 		}
 
 		const tokens = await GetTokens(session);

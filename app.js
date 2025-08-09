@@ -6,14 +6,18 @@ const {authRouter}=require('#Components/authorization/router')
 const { client } = require('#Libs/db/databse');
 const { createTables } = require('#Libs/db/create-tables');
 const App = express();
-const ErrorsMiddleware=require('#Middleware/error')
+const {ErrorsMiddleware}=require('#Middleware')
+const {coursesRouter}=require('#Components/courses/router.js')
+
 
 App.use(express.json());
+
 const redis=require('#Libs/redis/redis-connection.js') // Подключение редиса
 
 App.use(router);
 App.use(usersRouter);
 App.use(authRouter)
+App.use(coursesRouter)
 
 App.use(ErrorsMiddleware)
 

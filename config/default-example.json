@@ -9,5 +9,16 @@
 		"password": "password",
 		"database": "database"
 	},
-	"AUTH.PASSWORD_KEY":"key"
+	"AUTH.PASSWORD_KEY":"key",
+	"REDIS": {
+		"PORT": 6370,
+		"HOST": "localhost",
+		"PASSWORD": "root",
+		"DB": 1
+	},
+	"ROLES":{
+		"ADMIN":{"NAME":"admin","LEVEL":3},
+		"MENTOR":{"NAME":"mentor","LEVEL":2},
+		"STUDENT":{"NAME":"student","LEVEL":1}
+	}
 }

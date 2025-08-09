@@ -5,6 +5,7 @@ const Config = require('config');
 const DateFns = require('date-fns');
 const GetTokens = require('#Components/users/services/get-user-tokens.js');
 const { AuthorizationError } = require('#Errors')
+const {stripToken}=require('#Helpers')
 
 class GetNewTokensController extends BaseController {
     get bodySchema() {
@@ -23,9 +24,11 @@ class GetNewTokensController extends BaseController {
     async controller(req,res,next) {
         try {
             const { refresh_token } = req.body
-            jwt.verify(refresh_token, Config.get('AUTH.REFRESH_TOKEN_KEY'))
+            const token=stripToken(refresh_token)
 
-            const session = await GetSessionByTokenService(refresh_token);
+            jwt.verify(token, Config.get('AUTH.REFRESH_TOKEN_KEY'))
+
+            const session = await GetSessionByTokenService(token,'refresh');
             if (!session) {
                 return next(new AuthorizationError({ code: 'session_invalid', text: 'Сессия неверна' }))
             }

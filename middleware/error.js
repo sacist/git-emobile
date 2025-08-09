@@ -1,4 +1,4 @@
-const ErrorsMiddleware = (error, req, res, next) => {
+const ErrorsMiddleware = (error, _, res, __) => {
 	console.log(error);
 	if(error.statusCode) {
 		return res.status(error.statusCode).send({
